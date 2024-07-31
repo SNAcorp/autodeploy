@@ -4,6 +4,12 @@ import subprocess
 
 app = FastAPI()
 
+
+@app.get("/")
+async def lol():
+    return {"msg": "lol"}
+
+
 @app.post("/deploy")
 async def deploy():
     try:
@@ -16,7 +22,8 @@ async def deploy():
         build_output = result.stdout
 
         # Выполняем docker-compose up
-        result = subprocess.run(['docker-compose', 'up', '-d'], cwd='server', check=True, capture_output=True, text=True)
+        result = subprocess.run(['docker-compose', 'up', '-d'], cwd='server', check=True, capture_output=True,
+                                text=True)
         up_output = result.stdout
 
         return JSONResponse(content={
@@ -33,6 +40,7 @@ async def deploy():
             'message': error_message,
             'output': e.output.decode()
         })
+
 
 def main():
     import uvicorn
