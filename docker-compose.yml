@@ -2,6 +2,6 @@ services:
   main:
     build: .
     ports:
-      - "20"
+      - "1:15"
     volumes:
       - ./server:/app/server
