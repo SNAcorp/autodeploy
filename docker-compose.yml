@@ -1,7 +1,7 @@
 services:
-  deploy_server:
+  main:
     build: .
     ports:
-      - "8000:8000"
+      - "81:81"
     volumes:
       - ./server:/app/server
