@@ -2,6 +2,6 @@ services:
   main:
     build: .
     ports:
-      - "1:15"
+      - "8080:8000"
     volumes:
       - ./server:/app/server
