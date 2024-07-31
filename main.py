@@ -27,9 +27,10 @@ async def deploy():
         })
 
     except subprocess.CalledProcessError as e:
-        raise HTTPException(status_code=500, detail={
+        error_message = f"Command '{e.cmd}' returned non-zero exit status {e.returncode}."
+        return JSONResponse(status_code=500, content={
             'status': 'error',
-            'message': str(e),
+            'message': error_message,
             'output': e.output.decode()
         })
 
