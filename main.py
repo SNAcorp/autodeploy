@@ -31,7 +31,7 @@ async def deploy():
         return JSONResponse(status_code=500, content={
             'status': 'error',
             'message': error_message,
-            'output': e.output.decode()
+            'output': e.output.encode('utf-8')
         })
 
 
