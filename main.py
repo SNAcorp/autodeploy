@@ -17,7 +17,7 @@ async def deploy():
         git_result = subprocess.run(
             'git pull',
             shell=True,
-            cwd='/nomerhub_front',
+            cwd='/app/nomerhub_front',
             capture_output=True,
             text=True
         )
@@ -25,7 +25,7 @@ async def deploy():
         compose_result = subprocess.run(
             'docker compose up --build -d',
             shell=True,
-            cwd='/nomerhub_front',
+            cwd='/app/nomerhub_front',
             capture_output=True,
             text=True
         )
