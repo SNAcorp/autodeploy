@@ -13,23 +13,16 @@ async def lol():
 @app.post("/deploy")
 async def deploy():
     try:
-        # Переходим в папку server и выполняем git pull
-        result = subprocess.run(['git', 'pull'], cwd='server', check=True, capture_output=True, text=True)
+        result = subprocess.run(['git', 'pull'], cwd='nomerhub_front', check=True, capture_output=True, text=True)
         git_output = result.stdout
 
-        # Выполняем docker-compose build
-        result = subprocess.run(['docker-compose', 'build'], cwd='server', check=True, capture_output=True, text=True)
-        build_output = result.stdout
-
-        # Выполняем docker-compose up
-        result = subprocess.run(['docker-compose', 'up', '-d'], cwd='server', check=True, capture_output=True,
+        result = subprocess.run(['docker compose', 'up', '--build', '-d'], cwd='nomerhub_front', check=True, capture_output=True,
                                 text=True)
         up_output = result.stdout
 
         return JSONResponse(content={
             'status': 'success',
             'git_output': git_output,
-            'build_output': build_output,
             'up_output': up_output
         })
 

@@ -2,7 +2,19 @@ services:
   web-deploy:
     build: .
     command: uvicorn main:app --host 0.0.0.0 --port 80
-    ports:
-      - "80:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.deploy.rule=Host(`deploy.sna.lol`)"
+      - "traefik.http.routers.deploy.entrypoints=websecure"
+      - "traefik.http.routers.deploy.tls.certresolver=myresolver"
+      - "traefik.http.routers.deploy.priority=10"
+    networks:
+      - traefik_network
+    expose:
+      - "80"
     volumes:
-      - ./server:/app/server
+      - ./nomerhub_front:/app/nomerhub_front
+
+networks:
+  traefik_network:
+    external: true
