@@ -13,7 +13,7 @@ services:
     expose:
       - "80"
     volumes:
-      - ./nomerhub_front:/app/nomerhub_front
+      - /nomerhub_front:/app/nomerhub_front
       - /var/run/docker.sock:/var/run/docker.sock
 
 networks:

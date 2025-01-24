@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     git \
     gnupg \
+    docker \
     lsb-release \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
